@@ -1,17 +1,15 @@
 <MyButton@Button>:
-    font_size: 22
+    font_size: sp(35)
     background_color: [0, 0, 0, 0]
     color: 0, 0, 0, 1
-    background_normal: ''
-    background_down: '#8FC31F'
 
     canvas.before:
         Color:
-            rgb: (.97, .97, .97) if self.state=='normal' else (1, 1, 1, 1) # visual feedback of press
+            rgb: (.96, .96, .96) if self.state=='normal' else (1, 1, 1, 1) # visual feedback of press
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [30,]
+            radius: [50,]
 
 <ContainerMain>:
     orientation:'vertical'
@@ -39,7 +37,7 @@
         Label:
             id:label
             text: '0'
-            font_size: 40
+            font_size: sp(45)
             halign: 'right'
             valign: 'top'
             text_size: self.size
@@ -57,10 +55,13 @@
         Widget:
 
 
-        MyButton:
+        Button:
             id: backspace
-            text: '<<'
-            size_hint: 1, 1
+            text: '\u232b'
+            font_size: sp(25)
+            font_name: 'FiraSansRegular.ttf'
+            background_color: [0, 0, 0, 0]
+            color: 0, .76, .13, 1
             on_press:
                 root.backspace()
 
@@ -91,24 +92,28 @@
         MyButton:
             id: percent
             text: '%'
+            color: 0, .76, .13, 1
             on_press:
                 root.par_and_per("%")
 
         MyButton:
             id: parenthesis_open
             text: '('
+            color: 0, .76, .13, 1
             on_press:
                 root.par_and_per("(")
 
         MyButton:
             id: parenthesis_close
             text: ')'
+            color: 0, .76, .13, 1
             on_press:
                 root.par_and_per(")")
 
         MyButton:
             id: clear
             text: 'C'
+            color: .76, .22, .34, 1
             on_press:
                 root.clear()
 
@@ -133,6 +138,7 @@
         MyButton:
             id: plus
             text: '+'
+            color: 0, .76, .13, 1
             on_press:
                 root.add_operation("+")
 
@@ -157,6 +163,7 @@
         MyButton:
             id: minus
             text: '-'
+            color: 0, .76, .13, 1
             on_press:
                 root.add_operation("-")
 
@@ -181,6 +188,7 @@
         MyButton:
             id: multiply
             text: '*'
+            color: 0, .76, .13, 1
             on_press:
                 root.add_operation("*")
 
@@ -196,14 +204,26 @@
             on_press:
                 root.add_number("0")
 
-        MyButton:
+        Button:
             id: equal
             text: '='
+            font_size: sp(35)
+            background_color: [0, 0, 0, 0]
+            color: 1, 1, 1, 1
+
+            canvas.before:
+                Color:
+                    rgba: (0, .76, .13, 1) if self.state=='normal' else (1, 1, 1, 1) # visual feedback of press
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [50,]
             on_press:
                 root.calculate()
 
         MyButton:
             id: divide
             text: '/'
+            color: 0, .76, .13, 1
             on_press:
                 root.add_operation("/")
